@@ -6,6 +6,7 @@ Install Flask - pip install flask
 Install FlaskMySQL - pip install flask-mysql
 Install PyMySQL - pip install pymysql
 Install werkzeug for password hashing - pip install werkzeug
+Install Flask-CORS - pip install flask-cors     //Without this will give error Access to XMLHttpRequest at 'http://localhost:5000/users' from origin 'http://localhost:4200' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
 create table in database
       CREATE TABLE `tbl_user` (
