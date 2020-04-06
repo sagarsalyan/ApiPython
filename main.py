@@ -4,6 +4,7 @@ from db_config import mysql
 from flask import jsonify
 from flask import flash, request
 # from werkzeug import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 @app.route('/add', methods=['POST'])
 def add_user():
@@ -15,10 +16,10 @@ def add_user():
 		# validate the received values
 		if _name and _email and _password and request.method == 'POST':
 			#do not save password as a plain text
-			# _hashed_password = generate_password_hash(_password)
+			_hashed_password = generate_password_hash(_password)
 			# save edits
 			sql = "INSERT INTO tbl_user(user_name, user_email, user_password) VALUES(%s, %s, %s)"
-			data = (_name, _email, _password,)
+			data = (_name, _email, _hashed_password,)
 			conn = mysql.connect()
 			cursor = conn.cursor()
 			cursor.execute(sql, data)
@@ -77,10 +78,10 @@ def update_user():
 		# validate the received values
 		if _name and _email and _password and _id and request.method == 'POST':
 			#do not save password as a plain text
-			# _hashed_password = generate_password_hash(_password)
+			_hashed_password = generate_password_hash(_password)
 			# save edits
 			sql = "UPDATE tbl_user SET user_name=%s, user_email=%s, user_password=%s WHERE user_id=%s"
-			data = (_name, _email, _password, _id,)
+			data = (_name, _email, _hashed_password, _id,)
 			conn = mysql.connect()
 			cursor = conn.cursor()
 			cursor.execute(sql, data)
