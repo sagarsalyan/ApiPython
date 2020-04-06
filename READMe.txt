@@ -3,6 +3,7 @@ Install Python
 Install Flask - pip install flask
 Install FlaskMySQL - pip install flask-mysql
 Install PyMySQL - pip install pymysql
+Install werkzeug for password hashing - pip install werkzeug
 
 create table in database
       CREATE TABLE `tbl_user` (
